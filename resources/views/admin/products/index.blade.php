@@ -1,4 +1,8 @@
 @extends('layouts.grocery')
+@section('css')
+{{-- <link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
+@endsection
 @section('content')
 <div class="banner">
     <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('{{asset('assets/img/bg-header.jpg')}}');">
@@ -17,36 +21,50 @@
         <div class="row">
             <a class="btn btn-success mx-auto">New product</a>
             <div class="col-sm-12">
-                <table class="table">
+                <table class="table table-striped" id="table_products">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Old Price</th>
-                            <th>Description</th>
-                            <th>Options</th>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Old Price</th>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Options</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($products as $product)
                         <tr>
-                            <td scope="row">{{$product->id}}</td>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->price}}</td>
-                            <td>{{$product->old_price}}</td>
+                            <td class="text-center" width="10" scope="row">{{$product->id}}</td>
+                            <td class="text-center" width="10">{{$product->name}}</td>
+                            <td class="text-center" width="10">{{$product->price}}</td>
+                            <td class="text-center" width="10">{{$product->old_price}}</td>
                             <td>{{$product->description}}</td>
-                            <td>
-                                <a class="btn btn-primary">Edit</a>
-                                <a class="btn btn-danger">Delete</a>
+                            <td class="text-center" width="150">
+                                <div class="row">
+                                    <div class="my-auto mx-auto">
+                                        <a class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                    </div>
+                                    <div class="my-auto mx-auto">
+                                        <a class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                
             </div>
         </div>
     </div>
 </div>
+@endsection
 
+@section('js')
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#table_products').DataTable();} );
+</script>
+@endsection

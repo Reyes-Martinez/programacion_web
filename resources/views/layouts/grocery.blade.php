@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="assets/fonts/sb-bistro/sb-bistro.css" rel="stylesheet" type="text/css">
-    <link href="assets/fonts/font-awesome/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/fonts/sb-bistro/sb-bistro.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/fonts/font-awesome/font-awesome.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" type="text/css" media="all" href="{{asset('assets/packages/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" media="all" href="{{asset('assets/packages/o2system-ui/o2system-ui.css')}}">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="{{asset('assets/packages/thumbelina/thumbelina.css')}}">
     <link rel="stylesheet" type="text/css" media="all" href="{{asset('assets/packages/bootstrap-touchspin/bootstrap-touchspin.css')}}">
     <link rel="stylesheet" type="text/css" media="all" href="{{asset('assets/css/theme.css')}}">
+    @yield('css')
 
 </head>
 
@@ -217,6 +219,8 @@
     <script type="text/javascript" src="{{asset('assets/packages/thumbelina/thumbelina.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/packages/bootstrap-touchspin/bootstrap-touchspin.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/theme.js')}}"></script>
+    @yield('js')
+
 </body>
 
 </html>
