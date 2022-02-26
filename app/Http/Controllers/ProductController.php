@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all()->take(50);
+        $products = Product::all();
         return view('admin.products.index', compact('products'));
     }
 
@@ -25,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('name', 'id');
+        // dd($categories);
+        return view('admin.products.new_product', compact('categories'));
     }
 
     /**
@@ -36,7 +39,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->name = $request->get('name');
+        $product->price = $request->get('price');
+        $product->description = $request->get('description');
+        $product->category_id = $request->get('category_id');
+        $product->quantity = $request->get('quantity');
+        if ($request->hasFile('image')) {
+            $product->image = $request->get('image');
+            //*TODO file storage en documentacion de laravel
+        }
+        $product->save();
+        return redirect()->route('products')->with('success', 'Producto guardado correctamente');
     }
 
     /**

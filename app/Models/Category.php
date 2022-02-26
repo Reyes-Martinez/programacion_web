@@ -9,6 +9,7 @@ use App\Models\Product;
 class Category extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     public function products()
     {

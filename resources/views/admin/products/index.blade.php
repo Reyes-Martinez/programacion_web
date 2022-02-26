@@ -3,7 +3,9 @@
 {{-- <link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
 <link rel="stylesheet" type="text/css" media="all" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
 @endsection
+
 @section('content')
+
 <div class="banner">
     <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('{{asset('assets/img/bg-header.jpg')}}');">
         <div class="container">
@@ -16,10 +18,15 @@
         </div>
     </div>
 </div>
+@if(session()->get('success'))
+                <div class="alert alert-success text-center" role="alert" id="alert">
+                    <i class="fa-solid fa-badge-check"></i> {{session()->get('success')}}
+                </div>
+@endif
 <div class="product-detail">
     <div class="container">
         <div class="row">
-            <a class="btn btn-success mx-auto">New product</a>
+            <a href="{{route('create_product')}}" class="btn btn-success mx-auto">New product</a>
             <div class="col-sm-12">
                 <table class="table table-striped" id="table_products">
                     <thead>
@@ -66,5 +73,11 @@
 <script>
     $(document).ready(function() {
     $('#table_products').DataTable();} );
+    window.setTimeout(function() {
+    $("#alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 2000);
 </script>
+
 @endsection

@@ -27,7 +27,14 @@ Route::get('/register', [SiteController::class, 'register'])->name('register');
 
 Route::get('/product/details/{id}', [SiteController::class, 'product_details'])->name('product_details');
 
-Route::get('/admin/products', [ProductController::class, 'index']);
+Route::get('/admin/products', [ProductController::class, 'index'])->name('products');
+
+Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
+
+Route::post('/admin/products/stores', [ProductController::class, 'store'])->name('store_product');
+
+
+
 
 Route::get('/login', [SiteController::class, 'login'])->name('login');
 Route::get('/hola', function () {
