@@ -33,6 +33,7 @@ Route::get('/admin/products/create', [ProductController::class, 'create'])->name
 
 Route::post('/admin/products/stores', [ProductController::class, 'store'])->name('store_product');
 
+Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit'])->name('edit_product');
 
 
 

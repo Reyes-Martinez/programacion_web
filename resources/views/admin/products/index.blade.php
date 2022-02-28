@@ -50,7 +50,7 @@
                             <td class="text-center" width="150">
                                 <div class="row">
                                     <div class="my-auto mx-auto">
-                                        <a class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                        <a href="{{route('edit_product',$product->id)}}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                                     </div>
                                     <div class="my-auto mx-auto">
                                         <a class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Delete</a>
