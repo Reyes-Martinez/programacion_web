@@ -38,6 +38,7 @@ class SiteController extends Controller
     public function product_details($id)
     {
         $product = Product::find($id);
-        return view('product_details', compact('product'));
+        $product_comments = Product::find($id)->comments;
+        return view('product_details', compact('product', 'product_comments'));
     }
 }

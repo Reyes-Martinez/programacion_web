@@ -36,6 +36,7 @@
                             <th class="text-center">Price</th>
                             <th class="text-center">Old Price</th>
                             <th class="text-center">Quantity</th>
+                            <th class="text-center">Comments</th>
                             <th class="text-center">Description</th>
                             <th class="text-center">Options</th>
                         </tr>
@@ -48,6 +49,7 @@
                             <td class="text-center" width="10">{{$product->price}}</td>
                             <td class="text-center" width="10">{{$product->old_price}}</td>
                             <td class="text-center" width="10">{{$product->quantity}}</td>
+                            <td class="text-center" width="10">{{$product->comments->count()}}</td>
                             <td>{{$product->description}}</td>
                             <td class="text-center" width="150">
                                 <div class="row">

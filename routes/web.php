@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\Hello4Controller;
 use App\Http\Controllers\ProductController;
@@ -41,7 +42,7 @@ Route::post('/admin/products/update/{id}', [ProductController::class, 'update'])
 
 Route::delete('/admin/products/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy_product');
 
-
+Route::post('/products/store', [CommentController::class, 'store'])->name('store_comment');
 
 
 Route::get('/login', [SiteController::class, 'login'])->name('login');

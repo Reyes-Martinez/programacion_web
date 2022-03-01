@@ -1,5 +1,75 @@
 @extends('layouts.grocery')
 @section('content')
+<style>
+.addtxt {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 13px;
+    width: 350px;
+    background-color: #e5e8ed;
+    font-weight: 500
+}
+
+.form-control: focus {
+    color: #000
+}
+
+.second {
+    width: 350px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 10px 10px 5px #aaaaaa
+}
+
+.text1 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #56575b
+}
+
+.text2 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: #56575b
+}
+
+.text3 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 4px;
+    color: #828386
+}
+
+.text3o {
+    color: #00a5f4
+}
+
+.text4 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #828386
+}
+
+.text4i {
+    color: #00a5f4
+}
+
+.text4o {
+    color: white
+}
+
+.thumbup {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 5px
+}
+
+.thumbupo {
+    color: #17a2b8
+}
+</style>
 
 <div class="banner">
     <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('{{asset('assets/img/bg-header.jpg')}}');">
@@ -13,6 +83,11 @@
         </div>
     </div>
 </div>
+@if(session()->get('success'))
+                <div class="alert alert-success text-center" role="alert" id="alert">
+                    <i class="fa-solid fa-badge-check"></i> {{session()->get('success')}}
+                </div>
+@endif
 <div class="product-detail">
     <div class="container">
         <div class="row">
@@ -81,6 +156,37 @@
                 <button class="mt-3 btn btn-primary btn-lg">
                     <i class="fa fa-shopping-basket"></i> Add to Cart
                 </button>
+                <div class="row">
+                    <div class="col-sm-6 py-3">
+                        <form  class="form-horizontal" action="{{route('store_comment')}}" method="post" enctype="multipart/form">
+                            @csrf
+                            <div class="form-group row mt-3">
+                                <div class="col-md-12">
+                                    <label class="text-dark"><strong>Commenter</strong></label>
+                                    <input class="form-control" name="commenter" type="text" required placeholder="Commenter">
+                                </div>
+                            </div>
+                            <div class="form-group row mt-3">
+                                <div class="col-md-12">
+                                    <label class="text-dark"><strong>Comment</strong></label>
+                                    <textarea class="form-control" placeholder="Comment" required name="comment"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-3">
+                                <div class="col-md-12">
+                                    <label class="text-dark"><strong>Email</strong></label>
+                                    <input class="form-control" type="email" name="email" required placeholder="Email">
+                                </div>
+                            </div>
+                            <input type="hidden" name="product_id" value ={{$product->id}}>
+                            <div class="form-group row text-center mt-4">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase">Add comment</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -262,3 +368,25 @@
         </div>
     </div>
 </section>
+<section id="comments">
+    <h2 class="title">Comments</h2>
+    <div class="container justify-content-center mt-5 border-left border-right">
+        @foreach ($product_comments as $comment)
+        <div class="d-flex justify-content-center py-2">
+            <div class="second text-center"> <span class="text1">{{$comment->comment}}</span>
+                <div class="d-flex justify-content-between py-1 pt-2">
+                    <div><span class="text2">{{$comment->commenter}}</span></div>
+                    <div><span class="text3">{{$comment->created_at}}</span></div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</section>
+<script>
+    window.setTimeout(function() {
+    $("#alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 2000);
+</script>
