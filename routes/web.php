@@ -29,11 +29,18 @@ Route::get('/product/details/{id}', [SiteController::class, 'product_details'])-
 
 Route::get('/admin/products', [ProductController::class, 'index'])->name('products');
 
+Route::get('/admin/products/read', [ProductController::class, 'read'])->name('read_products');
+
 Route::get('/admin/products/create', [ProductController::class, 'create'])->name('create_product');
 
 Route::post('/admin/products/stores', [ProductController::class, 'store'])->name('store_product');
 
 Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit'])->name('edit_product');
+
+Route::post('/admin/products/update/{id}', [ProductController::class, 'update'])->name('update_product');
+
+Route::delete('/admin/products/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy_product');
+
 
 
 

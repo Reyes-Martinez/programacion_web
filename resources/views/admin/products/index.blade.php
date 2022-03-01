@@ -35,6 +35,7 @@
                             <th class="text-center">Name</th>
                             <th class="text-center">Price</th>
                             <th class="text-center">Old Price</th>
+                            <th class="text-center">Quantity</th>
                             <th class="text-center">Description</th>
                             <th class="text-center">Options</th>
                         </tr>
@@ -46,6 +47,7 @@
                             <td class="text-center" width="10">{{$product->name}}</td>
                             <td class="text-center" width="10">{{$product->price}}</td>
                             <td class="text-center" width="10">{{$product->old_price}}</td>
+                            <td class="text-center" width="10">{{$product->quantity}}</td>
                             <td>{{$product->description}}</td>
                             <td class="text-center" width="150">
                                 <div class="row">
@@ -53,7 +55,12 @@
                                         <a href="{{route('edit_product',$product->id)}}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                                     </div>
                                     <div class="my-auto mx-auto">
-                                        <a class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                                        <form id="delete_product" action="{{route('destroy_product',$product->id)}}" method="post">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                                            {{-- <a onclick="document.getElementById('delete_product').submit()" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Delete</a> --}}
+                                        </form>
                                     </div>
                                 </div>
                             </td>

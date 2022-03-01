@@ -25,7 +25,7 @@
                         <div class="form-group row mt-3">
                             <div class="col-md-12">
                                 <label class="text-dark"><strong>Product price</strong></label>
-                                <input class="form-control" type="number" name="price" required placeholder="Price">
+                                <input class="form-control" type="text" name="price" required placeholder="Price">
                             </div>
                         </div>
                         <div class="form-group row mt-3">
@@ -54,6 +54,7 @@
                         <div class="form-group row text-center mt-4">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase">Add product</button>
+                                <a href="{{route('products')}}" class="btn btn-danger btn-block text-uppercase">Cancel</a>
                             </div>
                         </div>
                     </form>

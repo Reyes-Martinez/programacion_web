@@ -8,85 +8,63 @@
           </h1>
           <div class="card card-login mb-5">
             <div class="card-body">
-{!! Form::open(['url' => '/productos' , 'method' => 'POST','class' => 'form-horizontal']) !!} <!--Laravel Collective   -->
-{!! Form::token()!!}
-<!--  Al igual que aparece en las instrucciones de laravelCollective que están en la documentación cambiamos las
-  etiquetas del formulario, cajas de texto etc.-->
-   <table class="table table-striped">
-
-        <!--Como se pueden dar cuenta tenemos que sustituir todas las etiquetas HTML por el código que nos ofrece
-        laravel collective y otro dato es que en la documentación nos lo muestran con un echo, pero cuando lo mudamos a nuestro
-        proyecto tenemos que encerrar ese código entre llaves y doble signo de exclamación-->
-
-
-  <tr>  <td>{!!Form::label('nombre', 'Nombre:')!!}</td>
-
-   <td>
-
-      {!!Form::text('NombreArticulo')!!}
-
-    {{csrf_field()}}
-   </td></tr>
-
-     <tr>
-         <td>
-             {!!Form::label('seccion', 'Seccion:')!!}
-
-         </td>
-
-
-           <td>
-
-
-              {!!Form::text('Seccion')!!}
-
-           </td>
-         </tr>
-             <tr>
-         <td> {!!Form::label('precio', 'Precio:')!!} </td>
-           <td>
-
-
-                 {!!Form::text('Precio')!!}
-
-
-               </td>
-         </tr>
-             <tr>
-         <td> {!!Form::label('fecha', 'Fecha:')!!} </td>
-           <td>
-                   {!!Form::text('Fecha')!!}
-                        </td>
-         </tr>
-             <tr>
-         <td>  {!!Form::label('Pais Origen ', 'Pais Origen:')!!} </td>
-           <td>
-                   {!!Form::text('Pais_Origen')!!}
-                                </td>
-         </tr>
-
-    <tr><td>
-
-    <input type="submit" name="enviar" value="Enviar">
-
-    {!!Form::submit('Enviar')!!}
-
-    </td>
-
-    <td>
-
-
-         {!!Form::reset('Borrar')!!}
-
-
-        </td>
-
-    </tr>
-
-   </table>
-{!! Form::close() !!} <!--Laravel Collective    -->
-</div>
-</div>
-</div>
-</div>
+              {!! Form::open(['route' => ['update_product', $product->id] , 'method' => 'POST','class' => 'form-horizontal']) !!} <!--Laravel Collective   -->
+              {!! Form::token()!!}
+                <div class="form-group row mt-3">
+                  <div class="col-md-12">
+                      <strong>
+                      {!!Form::label('labelName', 'Product Name:', ['class'=>'text-dark'])!!}
+                      </strong>
+                      {!!Form::text('name',$product->name,['class'=>'form-control text-center'])!!}                 
+                   </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <div class="col-md-12">
+                      <strong>
+                      {!!Form::label('labelDescription', 'Product Description:', ['class'=>'text-dark'])!!}
+                      </strong>
+                      {!!Form::text('description',$product->description,['class'=>'form-control text-center'])!!}                 
+                   </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <div class="col-md-12">
+                      <strong>
+                      {!!Form::label('labelPrice', 'Product Price:', ['class'=>'text-dark'])!!}
+                      </strong>
+                      {!!Form::number('price',$product->price,['class'=>'form-control text-center'])!!}                 
+                   </div>
+                </div>
+                
+                {{-- <div class="form-group row mt-3">
+                  <div class="col-md-12">
+                      <strong>
+                      {!!Form::label('labelOld_price', 'Product Old price:', ['class'=>'text-dark'])!!}
+                      </strong>
+                      {!!Form::number('old_price',$product->old_price,['class'=>'form-control text-center'])!!}                 
+                   </div>
+                </div> --}}
+                <div class="form-group row mt-3">
+                  <div class="col-md-12">
+                      <strong>
+                      {!!Form::label('labelQuantity', 'Product Quantity:', ['class'=>'text-dark'])!!}
+                      </strong>
+                      {!!Form::text('quantity',$product->quantity,['class'=>'form-control text-center'])!!}                 
+                   </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <div class="col-md-12">
+                      <strong>
+                      {!!Form::label('labelCatgory', 'Product Category:', ['class'=>'text-dark'])!!}
+                      </strong>
+                      {{-- {!!Form::text('category_id',$product->category_id,['class'=>'form-control text-center'])!!}  --}}
+                      {!!Form::select('category_id',$categories, $product->category_id,['class'=>'form-control text-center'] );
+                      !!}                
+                   </div>
+                </div>
+                {!! Form::submit('Update product',['class'=>'btn btn-primary btn-block text-uppercase'])!!}
+                <a href="{{route('products')}}" class="btn btn-danger btn-block text-uppercase">Cancel</a>
+              {!! Form::close() !!} <!--Laravel Collective    -->
+          </div>
+      </div>
+  </div>
 </div>
