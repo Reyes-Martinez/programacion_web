@@ -50,8 +50,8 @@
                             <td class="text-center" width="10">{{$product->old_price}}</td>
                             <td class="text-center" width="10">{{$product->quantity}}</td>
                             <td class="text-center" width="10">{{$product->comments->count()}}</td>
-                            <td>{{$product->description}}</td>
-                            <td class="text-center" width="150">
+                            <td class="text-center" width="150">{{$product->description}}</td>
+                            <td class="text-center" width="120">
                                 <div class="row">
                                     <div class="my-auto mx-auto">
                                         <a href="{{route('edit_product',$product->id)}}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
@@ -81,7 +81,11 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
-    $('#table_products').DataTable();} );
+    $('#table_products').DataTable({
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-MX.json'
+        }
+    });});
     window.setTimeout(function() {
     $("#alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove(); 

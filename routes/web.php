@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\Hello4Controller;
+use App\Http\Controllers\JsonController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,10 @@ Route::post('/admin/products/update/{id}', [ProductController::class, 'update'])
 Route::delete('/admin/products/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy_product');
 
 Route::post('/products/store', [CommentController::class, 'store'])->name('store_comment');
+
+Route::get('/json1', [JsonController::class, 'json1'])->name('json1');
+Route::get('/json2', [JsonController::class, 'products'])->name('json2');
+Route::get('/products_list', [JsonController::class, 'products_list'])->name('products_list');
 
 
 Route::get('/login', [SiteController::class, 'login'])->name('login');
